@@ -38,7 +38,8 @@
     function create_recipe(){
   
         // query to insert record
-        $query = ""
+        // add query here for create recipe [POST]
+        $query = "";
         $stmt = $this->conn->prepare($query);
       
         $this->category_id=htmlspecialchars(strip_tags($this->category_id));
@@ -48,14 +49,6 @@
         $this->groceries=htmlspecialchars(strip_tags($this->groceries));
         $this->coocking_steps=htmlspecialchars(strip_tags($this->coocking_steps));
         $this->created=htmlspecialchars(strip_tags($this->created));
-      
-        $stmt->bindParam(":category_id", $this->category_id);
-        $stmt->bindParam(":recipe_name", $this->recipe_name);
-        $stmt->bindParam(":picture", $this->picture);
-        $stmt->bindParam(":description", $this->description);
-        $stmt->bindParam(":groceries", $this->groceries);
-        $stmt->bindParam(":coocking_steps", $this->coocking_steps);
-        $stmt->bindParam(":created", $this->created);
         
       
         // execute query
