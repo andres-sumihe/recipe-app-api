@@ -38,7 +38,8 @@
     function create_recipe(){
   
         // query to insert record
-        $query = ""
+        // add query here for create recipe [POST]
+        $query = "";
         $stmt = $this->conn->prepare($query);
       
         $this->category_id=htmlspecialchars(strip_tags($this->category_id));
