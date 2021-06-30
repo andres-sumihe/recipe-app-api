@@ -3,17 +3,15 @@
     
         // database connection and table name
         private $conn;
-        private $table_name = "recipe";
+        private $table_name = "tbl_recipe";
     
         // object properties
         public $recipe_id;
         public $user_id;
         public $category_id;
         public $recipe_name;
-        public $picture;
+        public $picture_recipe_url;
         public $description;
-        public $groceries;
-        public $coocking_steps;
         // public $category_name;
     
         // constructor with $db as database connection
@@ -23,11 +21,10 @@
         function getAllRecipe(){
   
             // select all query
-            $query = "SELECT * FROM" . $this->table_name;
-          
+            $query = "SELECT * FROM " . $this->table_name;
             // prepare query statement
             $stmt = $this->conn->prepare($query);
-          
+            
             // execute query
             $stmt->execute();
           
@@ -57,7 +54,7 @@
         $stmt->bindParam(":groceries", $this->groceries);
         $stmt->bindParam(":coocking_steps", $this->coocking_steps);
         $stmt->bindParam(":created", $this->created);
-        
+
         // execute query
         if($stmt->execute()){
             return true;

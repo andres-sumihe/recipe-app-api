@@ -20,16 +20,14 @@ if($num>0){
   
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-  
+    
         $recipe_item=array(
             "recipe_id" => $recipe_id,
             "user_id" => $user_id,
             "category_id" => $category_id,
             "recipe_name" => $recipe_name,
-            "picture" => $picture,
+            "picture_recipe_url" => $picture_recipe_url,
             "description" => $description,
-            "groceries" => $groceries,
-            "coocking_steps" => $coocking_steps,
         );
   
         array_push($recipes_arr["records"], $recipe_item);
@@ -46,4 +44,22 @@ if($num>0){
         );
     }
 
+// {
+//     "records": [
+//         {
+//             "recipe_id": "1",
+//             "user": {
+//                 "user_id" : "1",
+//                 .....
+//             },
+//             "category": {
+//                 "category_id" : "1",
+//                 "category_name" : "Gorengan"
+//             },
+//             "recipe_name": "Tahu Isi Maknyos",
+//             "picture_recipe_url": "test",
+//             "description": "Tahu yang berisi"
+//         }
+//     ]
+// } 
 ?>
