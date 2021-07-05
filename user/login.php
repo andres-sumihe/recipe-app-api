@@ -33,7 +33,7 @@
 
         $token = array(
             "iat" => $issued_at,
-            "exp" => $expiration_time,
+            // "exp" => $expiration_time,
             "iss" => $issuer,
             "data" => array(
                 "id" => $user->id,

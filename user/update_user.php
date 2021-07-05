@@ -48,7 +48,7 @@ if ($jwt) {
     if ($user->update()) {
         $token = array(
             "iat" => $issued_at,
-            "exp" => $expiration_time,
+            // "exp" => $expiration_time,
             "iss" => $issuer,
             "data" => array(
                 "user_id" => $user->user_id,
