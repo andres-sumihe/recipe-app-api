@@ -36,7 +36,7 @@
   
         // query to insert record
         // add query here for create recipe [POST]
-        $query = "";
+        $query = "INSERT INTO " . $this->table_name . " SET recipe_id=:recipe_id, recipe_name=:recipe_name, picture_recipe_url=:picture_recipe_url, user_id=:user_id, category_id=:category_id";
         $stmt = $this->conn->prepare($query);
       
         $this->category_id=htmlspecialchars(strip_tags($this->category_id));
@@ -55,7 +55,7 @@
         $stmt->bindParam(":coocking_steps", $this->coocking_steps);
         $stmt->bindParam(":created", $this->created);
 
-        // execute query
+        
         if($stmt->execute()){
             return true;
         }
