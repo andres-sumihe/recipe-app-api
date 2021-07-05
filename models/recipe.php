@@ -36,26 +36,28 @@
   
         // query to insert record
         // add query here for create recipe [POST]
-        $query = "INSERT INTO " . $this->table_name . " SET recipe_id=:recipe_id, recipe_name=:recipe_name, picture_recipe_url=:picture_recipe_url, user_id=:user_id, category_id=:category_id";
+        $query = "INSERT INTO " . $this->table_name . " 
+                SET 
+                recipe_name=:recipe_name, 
+                picture_recipe_url=:picture_recipe_url, 
+                description=:description, 
+                user_id=:user_id, 
+                category_id=:category_id";
         $stmt = $this->conn->prepare($query);
       
-        $this->category_id=htmlspecialchars(strip_tags($this->category_id));
         $this->recipe_name=htmlspecialchars(strip_tags($this->recipe_name));
-        $this->picture=htmlspecialchars(strip_tags($this->picture));
+        $this->picture_recipe_url=htmlspecialchars(strip_tags($this->picture_recipe_url));
         $this->description=htmlspecialchars(strip_tags($this->description));
-        $this->groceries=htmlspecialchars(strip_tags($this->groceries));
-        $this->coocking_steps=htmlspecialchars(strip_tags($this->coocking_steps));
-        $this->created=htmlspecialchars(strip_tags($this->created));
+        $this->user_id=htmlspecialchars(strip_tags($this->user_id));
+        $this->category_id=htmlspecialchars(strip_tags($this->category_id));
         
-        $stmt->bindParam(":category_id", $this->category_id);
         $stmt->bindParam(":recipe_name", $this->recipe_name);
-        $stmt->bindParam(":picture", $this->picture);
+        $stmt->bindParam(":picture_recipe_url", $this->picture_recipe_url);
         $stmt->bindParam(":description", $this->description);
-        $stmt->bindParam(":groceries", $this->groceries);
-        $stmt->bindParam(":coocking_steps", $this->coocking_steps);
-        $stmt->bindParam(":created", $this->created);
-
+        $stmt->bindParam(":user_id", $this->user_id);
+        $stmt->bindParam(":category_id", $this->category_id);
         
+
         if($stmt->execute()){
             return true;
         }
