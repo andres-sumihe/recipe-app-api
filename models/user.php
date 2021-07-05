@@ -101,6 +101,29 @@ class User
         return false;
     }
 
+    public function getUserById($user_id)
+    {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE user_id = {$user_id}";
+            // prepare query statement
+            $stmt = $this->conn->prepare($query);
+            
+            // execute query
+            $stmt->execute();
+
+            $num = $stmt->rowCount();
+            if ($num > 0) {
+
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+                $this->name = $row['name'];
+                $this->email = $row['email'];
+                $this->username = $row['username'];
+                $this->password = $row['password'];
+        
+                return true;
+            }
+    }
+
     public function update()
     {
 
