@@ -118,7 +118,7 @@ class User
                 $this->name = $row['name'];
                 $this->email = $row['email'];
                 $this->username = $row['username'];
-                $this->password = $row['password'];
+                $this->picture_url = $row['picture_url'];
         
                 return true;
             }
@@ -149,6 +149,29 @@ class User
             $password_hash = password_hash($this->password, PASSWORD_BCRYPT);
             $stmt->bindParam(':password', $password_hash);
         }
+
+        $stmt->bindParam(':user_id', $this->user_id);
+
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        return false;
+    }
+    public function update_profile_photo()
+    {
+
+        $query = "UPDATE " . $this->table_name . "
+            SET
+                picture_url = :picture_url
+            WHERE user_id = :user_id";
+
+        $stmt = $this->conn->prepare($query);
+
+        $this->picture_url = htmlspecialchars(strip_tags($this->picture_url));
+
+        $stmt->bindParam(':picture_url', $this->picture_url);
+        
 
         $stmt->bindParam(':user_id', $this->user_id);
 

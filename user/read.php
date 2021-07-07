@@ -48,7 +48,8 @@ if ($jwt) {
                 "user_id" => $user->user_id,
                 "name" => $user->name,
                 "email" => $user->email,
-                "username" => $user->username
+                "username" => $user->username,
+                "picture_url" => $user->picture_url
             )
         );
 
