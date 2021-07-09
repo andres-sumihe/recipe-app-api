@@ -73,24 +73,14 @@ class Grocery
     }
     public function getGroceryByRecipeId($recipe_id)
     {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE recipe = {$recipe_id}";
+        $query = "SELECT * FROM {$this->table_name} WHERE recipe_id = {$recipe_id}";
             // prepare query statement
             $stmt = $this->conn->prepare($query);
             
             // execute query
             $stmt->execute();
-
-            $num = $stmt->rowCount();
-            if ($num > 0) {
-
-                $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-                $this->groceries_id = $row['groceries_id'];
-                $this->groceries_name = $row['groceries_name'];
-                $this->groceries_quantity = $row['groceries_quantity'];
-        
-                return true;
-            }
+            
+            return $stmt;
     }
 
     public function update()
